@@ -6,7 +6,7 @@ import CommentList from './CommentList';
 const PostList = () => {
     const [posts,setPosts]=useState({});
     const fetchPosts = async() =>{
-        const result = await axios.get("http://localhost:5001/posts")
+        const result = await axios.get("http://localhost:5003/posts")
         setPosts(result.data)
     }
 
@@ -16,10 +16,10 @@ const PostList = () => {
      
     const renderedPosts = Object.values(posts).map(post => {
         return (
-            <div key={post.postId} className="card" style={{width:"30%",marginBottom:"20px"}}>
+            <div key={post.id} className="card" style={{width:"30%",marginBottom:"20px"}}>
                  <h3>{post.title}</h3>
-                 <CommentList postId={post.postId}/>
-                 <CommentCreate postId={post.postId}/>
+                 <CommentList comments={post.comments}/>
+                 <CommentCreate postId={post.id}/>
             </div>
         )
     })
