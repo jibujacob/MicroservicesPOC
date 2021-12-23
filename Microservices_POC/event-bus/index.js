@@ -17,10 +17,10 @@ app.get("/events",(req,res)=>{
 app.post("/events", (req,res)=>{
     const event = req.body;
     events.push(event)
-        axios.post("http://localhost:5001/events",event).catch(err=>console.log(err))
-        axios.post("http://localhost:5002/events",event).catch(err=>console.log(err))
-        axios.post("http://localhost:5003/events",event).catch(err=>console.log(err))
-        axios.post("http://localhost:5004/events",event).catch(err=>console.log(err))
+        axios.post("http://posts-clusterip-srv:5001/events",event).catch(err=>console.log(err))
+        axios.post("http://comments-srv:5002/events",event).catch(err=>console.log(err))
+        axios.post("http://query-srv:5003/events",event).catch(err=>console.log(err))
+        axios.post("http://moderation-srv:5004/events",event).catch(err=>console.log(err))
         res.json({status:"OK"})
 
 })

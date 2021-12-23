@@ -18,14 +18,14 @@ app.get("/posts",(req,res)=>{
     res.status(200).json(posts)
 })
 
-app.post("/posts",async (req,res)=>{
+app.post("/posts/create",async (req,res)=>{
     const id = crypto.randomBytes(4).toString("hex");
     const {title}  = req.body;
     posts[id] = {
         postId:id,title
     }
 
-    await axios.post("http://localhost:5005/events",{
+    await axios.post("http://event-bus-srv:5005/events",{
         type:"PostCreated",
         data:{
             id,title
